@@ -1,16 +1,22 @@
 import express from "express";
 import cors from "cors";
+import simpleGit from "simple-git";
+import {generate} from "./utils" 
+
 
 const app = express();
 app.use(cors())
 
 // initialized an endpoint that the usr will hit and send the repo url as input
 app.use(express.json())
-app.post("/delpoy",(req, res) => {
+app.post("/delpoy",async (req, res) => {
     const repoUrl = req.body.repoUrl;
-    console.log(repoUrl);
+    const id = generate();  
+    await simpleGit().clone(repoUrl,`output/${id}`)
 
-    res.json({})
+    res.json({
+        id: id
+    })
 })
 
 app.listen(3000);
