@@ -20,7 +20,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 // initialized an endpoint that the usr will hit and send the repo url as input
 app.use(express_1.default.json());
-app.post("/delpoy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const repoUrl = req.body.repoUrl;
     const id = (0, utils_1.generate)();
     yield (0, simple_git_1.default)().clone(repoUrl, `output/${id}`);

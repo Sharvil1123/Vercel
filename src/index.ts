@@ -9,11 +9,11 @@ app.use(cors())
 
 // initialized an endpoint that the usr will hit and send the repo url as input
 app.use(express.json())
-app.post("/delpoy",async (req, res) => {
+app.post("/deploy",async (req, res) => {
     const repoUrl = req.body.repoUrl;
     const id = generate();  
     await simpleGit().clone(repoUrl,`output/${id}`)
-
+// putt tthis to s3
     res.json({
         id: id
     })
