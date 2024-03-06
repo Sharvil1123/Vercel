@@ -16,6 +16,8 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const simple_git_1 = __importDefault(require("simple-git"));
 const utils_1 = require("./utils");
+const file_1 = require("./file");
+const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 // initialized an endpoint that the usr will hit and send the repo url as input
@@ -23,7 +25,9 @@ app.use(express_1.default.json());
 app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const repoUrl = req.body.repoUrl;
     const id = (0, utils_1.generate)();
-    yield (0, simple_git_1.default)().clone(repoUrl, `output/${id}`);
+    yield (0, simple_git_1.default)().clone(repoUrl, path_1.default.join(__dirname, `output/${id}`));
+    const files = (0, file_1.getAllFiles)(path_1.default.join(__dirname, `output/${id}`));
+    // putt tthis to s3
     res.json({
         id: id
     });
