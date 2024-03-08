@@ -6,6 +6,10 @@ import {generate} from "./utils"
 import { getAllFiles } from "./file";
 import path from "path";
 import {uploadFile} from "./aws";
+import {createClient} from "redis";
+
+const publisher = createClient();  // redis publisher to publish to redis   
+publisher.connect();
 
 const app = express();
 app.use(cors())
@@ -21,7 +25,9 @@ app.post("/deploy",async (req, res) => {
 
     files.forEach(async file => {
         await uploadFile(file.slice(__dirname.length +1), file);
-    })
+    });
+
+    publisher.lPush("build-queue", id);
 
 
 // putt tthis to s3
