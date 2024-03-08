@@ -18,16 +18,24 @@ const aws_sdk_1 = require("aws-sdk");
 const s3 = new aws_sdk_1.S3({
     accessKeyId: "9df3479b2d467af57e35d7cb5c142a2f",
     secretAccessKey: "e4f2eca53696ddb158edf9e59a2888fc798992af5de232ac5e40f905925fd374",
-    endpoint: "https://83ae6a046fbb74ba0a860706c6af3430.r2.cloudflarestorage.com"
+    endpoint: "https://83ae6a046fbb74ba0a860706c6af3430.r2.cloudflarestorage.com",
 });
 const uploadFile = (fileName, localFilePath) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("called");
     const fileContent = fs_1.default.readFileSync(localFilePath);
     const response = yield s3.upload({
         Body: fileContent,
         Bucket: "vercel-bucket",
         Key: fileName,
     }).promise();
+    console.log(response);
+    //   const fileContent = fs.createReadStream(localFilePath);
+    //   const response = await s3
+    //     .upload({
+    //       Body: fileContent,
+    //       Bucket: "vercel-bucket",
+    //       Key: fileName,
+    //     })
+    //     .promise();
     console.log(response);
 });
 exports.uploadFile = uploadFile;

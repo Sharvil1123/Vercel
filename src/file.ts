@@ -12,7 +12,10 @@ export const getAllFiles = (folderPath : string) => {
         if(fs.statSync(fullFilePath).isDirectory()){
             response = response.concat(getAllFiles(fullFilePath))
         } else{
-            response.push(fullFilePath)
+            // response.push(fullFilePath)
+            if (!file.startsWith(".git")) { // Exclude Git-related files
+                response.push(fullFilePath);
+            }
         }
     });
 

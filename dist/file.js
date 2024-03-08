@@ -15,7 +15,10 @@ const getAllFiles = (folderPath) => {
             response = response.concat((0, exports.getAllFiles)(fullFilePath));
         }
         else {
-            response.push(fullFilePath);
+            // response.push(fullFilePath)
+            if (!file.startsWith(".git")) { // Exclude Git-related files
+                response.push(fullFilePath);
+            }
         }
     });
     return response;
