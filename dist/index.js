@@ -19,6 +19,10 @@ const utils_1 = require("./utils");
 const file_1 = require("./file");
 const path_1 = __importDefault(require("path"));
 const aws_1 = require("./aws");
+const redis_1 = require("redis");
+require("aws-sdk/lib/maintenance_mode_message").suppress = true;
+const publisher = (0, redis_1.createClient)(); // redis publisher to publish to redis   
+publisher.connect();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 // initialized an endpoint that the usr will hit and send the repo url as input
@@ -31,6 +35,7 @@ app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     files.forEach((file) => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, aws_1.uploadFile)(file.slice(__dirname.length + 1), file);
     }));
+    publisher.lPush("build-queue", id);
     // putt tthis to s3
     res.json({
         id: id

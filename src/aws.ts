@@ -1,6 +1,9 @@
 import fs from "fs";
 import { S3 } from "aws-sdk";
 
+
+require("aws-sdk/lib/maintenance_mode_message").suppress= true;
+
 const s3 = new S3({
   accessKeyId: "9df3479b2d467af57e35d7cb5c142a2f",
   secretAccessKey:"e4f2eca53696ddb158edf9e59a2888fc798992af5de232ac5e40f905925fd374",

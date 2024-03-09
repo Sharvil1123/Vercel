@@ -8,6 +8,9 @@ import path from "path";
 import {uploadFile} from "./aws";
 import {createClient} from "redis";
 
+require("aws-sdk/lib/maintenance_mode_message").suppress= true;
+
+
 const publisher = createClient();  // redis publisher to publish to redis   
 publisher.connect();
 
