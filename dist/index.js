@@ -20,7 +20,7 @@ const file_1 = require("./file");
 const path_1 = __importDefault(require("path"));
 const aws_1 = require("./aws");
 const redis_1 = require("redis");
-require("aws-sdk/lib/maintenance_mode_message").suppress = true;
+// require("aws-sdk/lib/maintenance_mode_message").suppress= true;
 const publisher = (0, redis_1.createClient)(); // redis publisher to publish to redis   
 publisher.connect();
 const app = (0, express_1.default)();
