@@ -11,14 +11,21 @@ const getAllFiles = (folderPath) => {
     const allFilesAndFolders = fs_1.default.readdirSync(folderPath);
     allFilesAndFolders.forEach(file => {
         const fullFilePath = path_1.default.join(folderPath, file);
+        // if(fs.statSync(fullFilePath).isDirectory()){
+        //     response = response.concat(getAllFiles(fullFilePath))
+        // } else{
+        //     response.push(fullFilePath)
+        //     // if (!file.startsWith(".git")) { // Exclude Git-related files
+        //     //     response.push(fullFilePath);
+        //     // }
+        // }
         if (fs_1.default.statSync(fullFilePath).isDirectory()) {
-            response = response.concat((0, exports.getAllFiles)(fullFilePath));
+            if (!file.startsWith(".git")) {
+                response = response.concat((0, exports.getAllFiles)(fullFilePath));
+            }
         }
         else {
-            // response.push(fullFilePath)
-            if (!file.startsWith(".git")) { // Exclude Git-related files
-                response.push(fullFilePath);
-            }
+            response.push(fullFilePath);
         }
     });
     return response;
