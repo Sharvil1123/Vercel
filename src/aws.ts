@@ -5,8 +5,8 @@ import { S3 } from "aws-sdk";
 require("aws-sdk/lib/maintenance_mode_message").suppress= true;
 
 const s3 = new S3({
-  accessKeyId: "9df3479b2d467af57e35d7cb5c142a2f",
-  secretAccessKey:"e4f2eca53696ddb158edf9e59a2888fc798992af5de232ac5e40f905925fd374",
+  accessKeyId: "a15e4ff7159459f3722bd989844d7378",
+  secretAccessKey:"2cff98ebc425c50e5f92dfadbb8f4042aeec87c6ba0f5d92dc3e6c90b4aa83e4",
   endpoint: "https://83ae6a046fbb74ba0a860706c6af3430.r2.cloudflarestorage.com",
 });
 
