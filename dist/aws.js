@@ -29,14 +29,22 @@ const uploadFile = (fileName, localFilePath) => __awaiter(void 0, void 0, void 0
         Key: fileName,
     }).promise();
     console.log(response);
-    //   const fileContent = fs.createReadStream(localFilePath);
-    //   const response = await s3
-    //     .upload({
-    //       Body: fileContent,
-    //       Bucket: "vercel-bucket",
-    //       Key: fileName,
-    //     })
-    //     .promise();
-    console.log(response);
 });
 exports.uploadFile = uploadFile;
+// export const uploadFile = async (fileName: string, localFilePath: string) => {
+//   const fileContent = fs.readFileSync(localFilePath);
+//   const response = await s3.upload({
+//       Body : fileContent,
+//       Bucket : "vercel",
+//       Key : fileName,
+//   }).promise();
+//   console.log(response);
+// //   const fileContent = fs.createReadStream(localFilePath);
+// //   const response = await s3
+// //     .upload({
+// //       Body: fileContent,
+// //       Bucket: "vercel-bucket",
+// //       Key: fileName,
+// //     })
+// //     .promise();
+// };
